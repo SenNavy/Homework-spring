@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <br>
+    <center><h1>View Single Record</h1></center>
+    <br>
+    <div class="col-md-6 offset-md-3">
+        <form th:action="@{/updateAction}" th:method="post" th:object="${article}">
+            <fieldset>
+                <legend>Form Update</legend>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control " readonly  th:field="${article.id}">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" th:value="${article.name}">
+                    <label for="author">Author</label>
+                    <input type="text" class="form-control" name="author" th:value="${article.author}">
+                    <br>
+                    <label for="author">Description</label>
+                    <input type="text" class="form-control" name="description" th:value="${article.description}">
+                    <br>
+                    <label for="image">Image</label>
+                    <input type="text" class="form-control" name="image" th:value="${article.image}">
+                    <br>
+                    <a href="/viewAll">
+                        <input type="button" class="btn btn-primary" value="Back">
+                    </a>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+</body>
+</html>

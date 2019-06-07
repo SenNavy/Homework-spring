@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<h1>Update Form</h1>
+<div class="col-md-6 offset-md-3">
+    <form th:action="@{/updateAction}" th:method="post" th:object="${article}">
+        <fieldset>
+            <legend>Form Update</legend>
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" class="form-control " readonly  th:field="${article.id}">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" th:value="${article.name}">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" name="author" th:value="${article.author}">
+                <br>
+                <label for="author">Description</label>
+                <input type="text" class="form-control" name="description" th:value="${article.description}">
+                <br>
+                <input type="submit" class="btn btn-primary" value="Save Edit">
+                <a href="/viewAll">
+                    <input type="button" class="btn btn-primary" value=" Cancel ">
+                </a>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+</body>
+</html>

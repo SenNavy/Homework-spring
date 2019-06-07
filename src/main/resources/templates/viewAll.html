@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+        <style>
+            .btn{
+                width: 97px !important;
+                height: 10% !important;
+                font-size: small !important;
+            }
+            .btnAdd{
+                width: auto !important;
+            }
+            hr{
+                border: 1px solid grey;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <table class="table table-striped">
+            <br>
+            <center><h1>View All Records</h1></center>
+            <br>
+
+        <tbody>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Action</th>
+            <th>Image</th>
+        </tr>
+        <tr th:each="article:${articles}">
+            <td th:text="${article.id}"></td>
+            <td th:text="${article.name}"></td>
+            <td th:text="${article.author}"></td>
+            <td th:text="${article.description}"></td>
+            <td><img th:src="${article.image}"></td>
+            <td>
+                <div>
+                    <a th:href="@{/view(id=${article.id})}">
+                        <button type="button" data-toggle="modal" data-target="#basicExampleModal" class="btn btn-default btn-md">View</button>
+                    </a>
+                    <a th:href="@{/update/{id}(id=${article.id})}"><button type="button" class="btn btn-warning btn-md ">Edit</button></a>
+                    <form th:action="@{/article/{id}(id=${article.id})}" th:method="delete">
+                        <button class="btn btn-danger btn-md" th:type="submit" th:attr="data-id=${article.id}">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <a href="form"><button class="btn btn-success btnAdd">Add Row</button></a>
+    </div>
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+    </body>
+</html>
