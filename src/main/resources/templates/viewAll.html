@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator ="layouts/layout.html">
     <head>
+
         <meta charset="UTF-8">
-        <title>Title</title>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <!-- Bootstrap core CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/style.css">
+
+        <title>View All Record</title>
+
         <style>
             .btn{
-                width: 97px !important;
+
                 height: 10% !important;
                 font-size: small !important;
+            }
+            .btnlang{
+                width: 125px !important;
+
             }
             .btnAdd{
                 width: auto !important;
@@ -22,56 +32,187 @@
             hr{
                 border: 1px solid grey;
             }
+            .imageZone{
+                width: 50px !important;
+                height: 50px !important;
+            }
+
+            .header{
+                width: 100% !important;
+                height: 100px !important;
+                text-align: center !important;
+            }
+            .big_title{
+                font-weight: bold ;
+                color: #fff;
+            }
+            .viewAllRecord{
+                font-weight: bold ;
+                color:black;
+            }
+            body{
+                font-family: "Kh Content" ;
+                background-color: #d0d6e2;
+            }
+
+            /*-----------------------Footer---------------------------*/
+
+            ul{
+                list-style: none;
+            }
+            .footer-copyright{
+                background-color: #161c27;
+                color: aliceblue;
+            }
+            li{
+                text-align: -webkit-match-parent;
+                box-sizing: border-box;
+            }
+
+
+            /* icon */
+
+            .btn-floating {
+                width: 47px;
+                height: 47px;
+                position: relative;
+                vertical-align: middle;
+                margin: 10px;
+                padding: 0;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+            }
+
+            .btn-floating i {
+                display: inline-block;
+                width: inherit;
+                text-align: center;
+                color: #fff;
+                font-size: 1.25rem;
+                line-height: 47px;
+            }
+
+            .btn-floating:hover {
+                background: #58647d;
+            }
+
+            .btn-fb {
+                background-color: #3b5998;
+            }
+
+            .btn-tw {
+                background-color: #55acee;
+            }
+
+            .btn-li {
+                background-color: #0082ca;
+            }
+
+            .btn-insta {
+                background: linear-gradient(
+                        45deg,
+                        #f09433 0%,
+                        #e6683c 25%,
+                        #dc2743 50%,
+                        #cc2366 75%,
+                        #bc1888 100%
+                );
+            }
+            /* icon */
+            /************************** End Updated Footer *************************/
         </style>
     </head>
     <body>
-    <div class="container">
-        <table class="table table-striped">
-            <br>
-            <center><h1>View All Records</h1></center>
-            <br>
+    <div th:replace="fragments/header::header"></div>
+        <br><br>
+        <div class="container" >
+            <a href="/addArticle"><button th:text="#{add}" class="btn btn-success btnAdd">Add Row</button></a>
+        </div>
+        <!--layout:fragment="content-->
+        <div class="container">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th th:text="#{id}">ID</th>
+                        <th th:text="#{title}">Title</th>
+                        <th th:text="#{category}">Category</th>
+                        <th th:text="#{author}">Author</th>
+                        <th th:text="#{descriptions}">Description</th>
+                        <th th:text="#{image}">Image</th>
+                        <th th:text="#{action}">Action</th>
+                    </tr>
 
-        <tbody>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Description</th>
-            <th>Action</th>
-            <th>Image</th>
-        </tr>
-        <tr th:each="article:${articles}">
-            <td th:text="${article.id}"></td>
-            <td th:text="${article.name}"></td>
-            <td th:text="${article.author}"></td>
-            <td th:text="${article.description}"></td>
-            <td><img th:src="${article.image}"></td>
-            <td>
-                <div>
-                    <a th:href="@{/view(id=${article.id})}">
-                        <button type="button" data-toggle="modal" data-target="#basicExampleModal" class="btn btn-default btn-md">View</button>
-                    </a>
-                    <a th:href="@{/update/{id}(id=${article.id})}"><button type="button" class="btn btn-warning btn-md ">Edit</button></a>
-                    <form th:action="@{/article/{id}(id=${article.id})}" th:method="delete">
-                        <button class="btn btn-danger btn-md" th:type="submit" th:attr="data-id=${article.id}">Delete</button>
-                    </form>
+                    <tr th:each="article:${articles}">
+                        <td th:text="${article.id}"></td>
+                        <td th:text="${article.name}"></td>
+                        <td th:text="${article.categories.catTitle}"></td>
+                        <td th:text="${article.author}"></td>
+                        <td th:text="${article.description}"></td>
+                        <td ><img class="imageZone" th:src="'resources/'+${article.image}"></td>
+                        <td>
+                            <div>
+                                <a th:href="@{/view(id=${article.id})}">
+                                    <button th:text="#{view}" type="button" data-toggle="modal" data-target="#basicExampleModal" class="btn btn-default btn-md">View</button>
+                                </a>
+                                <a th:href="@{/update/{id}(id=${article.id})}"  ><button th:text="#{edite}" type="button" class="btn btn-warning btn-md ">Edit</button></a>
+
+                                <form style="display: inline-block"  th:action="@{/deleteArticle/{id}(id=${article.id})}" th:method="delete">
+                                    <button th:text="#{delete}" type="submit" class="btn btn-danger btn-md"></button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <!--Pagination-->
+            <div class="row">
+                <div class="col-md-6">
+                    <div  class="paginations" >
+                        <nav  aria-label="Page navigation example">
+                            <ul  class="pagination pagination-circle pg-blue">
+                                <li class="page-item "><a th:href="@{/pageNum(page=-2)}" class="page-link">First</a></li>
+                                <li class="page-item ">
+                                    <a class="page-link" th:href="@{/pageNum(page=-3)}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active" th:each="page: ${pages}">
+                                    <a class="page-link" th:href = "@{/pageNum(page=${page})}" th:text="${page}"></a></li>
+
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" th:href="@{/pageNum(page=-1)}">Last</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <hr>
-    <a href="form"><button class="btn btn-success btnAdd">Add Row</button></a>
-    </div>
+                <div align="right" class="col-md-6">
+                    <!--<h5>page 2 of :</h5>-->
+                    <!--<h2 th:text="${currentPage}"></h2>-->
+                </div>
 
+            </div>
+            <!--Pagination-->
+        </div>
+        <!--<div class="container" layout:fragment="content"></div>-->
+        <div th:replace="fragments/footer::footer"></div>
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
     </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-md-6 offset-md-3">
+    <br>
+    <center><h1 style="font-weight: lighter">Categories Insert Form</h1></center>
+    <br>
+
+
+    <form action="/postCat" method="post" th:object="${categories}" enctype="multipart/form-data">
+        <fieldset>
+            <legend></legend>
+            <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" class="form-control" th:field="${categories.catId}">
+                <br>
+                <label for="title">Name</label>
+                <input type="text" class="form-control" name="catTitle">
+                <br>
+                <input type="submit" class="btn btn-primary" value="Add Data">
+                <a href="/viewCat">
+                    <input type="button" class="btn btn-primary" value="Cancel">
+                </a>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+</body>
+</html>

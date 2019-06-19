@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator ="layouts/layout.html">
+<head>
+
+    <meta charset="UTF-8">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>View All Record</title>
+
+    <style>
+        .btn{
+
+            height: 10% !important;
+            font-size: small !important;
+        }
+        .btnlang{
+            width: 125px !important;
+
+        }
+        .btnAdd{
+            width: auto !important;
+        }
+        hr{
+            border: 1px solid grey;
+        }
+        .imageZone{
+            width: 50px !important;
+            height: 50px !important;
+        }
+
+        .pageTitle{
+            font-weight: bold ;
+            color: #fff;
+        }
+        .viewAllRecord{
+            font-weight: bold ;
+            color:black;
+        }
+        body{
+            font-family: "Kh Content" ;
+            background-color: #d0d6e2;
+        }
+
+        /*-----------------------Footer---------------------------*/
+
+        ul{
+            list-style: none;
+        }
+        .footer-copyright{
+            background-color: #161c27;
+            color: aliceblue;
+        }
+        li{
+            text-align: -webkit-match-parent;
+            box-sizing: border-box;
+        }
+
+
+        /* icon */
+
+        .btn-floating {
+            width: 47px;
+            height: 47px;
+            position: relative;
+            vertical-align: middle;
+            margin: 10px;
+            padding: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-floating i {
+            display: inline-block;
+            width: inherit;
+            text-align: center;
+            color: #fff;
+            font-size: 1.25rem;
+            line-height: 47px;
+        }
+
+        .btn-floating:hover {
+            background: #58647d;
+        }
+
+        .btn-fb {
+            background-color: #3b5998;
+        }
+
+        .btn-tw {
+            background-color: #55acee;
+        }
+
+        .btn-li {
+            background-color: #0082ca;
+        }
+
+        .btn-insta {
+            background: linear-gradient(
+                    45deg,
+                    #f09433 0%,
+                    #e6683c 25%,
+                    #dc2743 50%,
+                    #cc2366 75%,
+                    #bc1888 100%
+            );
+        }
+        /* icon */
+        /************************** End Updated Footer *************************/
+    </style>
+</head>
+<body>
+<div th:replace="fragments/header::header"></div>
+<br><br><br>
+<div class="container" >
+    <a href="/addCat"><button  class="btn btn-success btnAdd">Add Row</button></a>
+    <a href="/viewAll?l=kh"><button th:text="#{khmer}" class="btn btn-primary btnlang ">KHMER</button></a>
+    <a href="/viewAll?l=en"><button th:text="#{english}" class="btn btn-dark btnlang ">English</button></a>
+</div>
+<!--layout:fragment="content-->
+<div class="container">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <th th:text="#{id}">ID</th>
+            <th th:text="#{title}">Title</th>
+            <th th:text="#{action}">Action</th>
+        </tr>
+        <tr th:each="category:${categories}">
+            <td th:text="${category.catId}"></td>
+            <td th:text="${category.catTitle}"></td>
+            <td>
+                <div>
+                    <a th:href="@{/updateCat/{catId}(catId=${category.catId})}"  ><button th:text="#{edite}" type="button" class="btn btn-warning btn-md ">Edit</button></a>
+                    <form style="display: inline-block" th:action="@{/deleteCat/{catId}(catId=${category.catId})}" th:method="delete">
+                        <button th:text="#{delete}" type="submit" class="btn btn-danger btn-md">Delete</button></a>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!--Pagination-->
+</div>
+<!--<div class="container" layout:fragment="content"></div>-->
+<div th:replace="fragments/footer::footer"></div>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+</body>
+</html>

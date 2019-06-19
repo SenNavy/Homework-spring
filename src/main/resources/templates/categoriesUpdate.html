@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+    <style>
+
+        .btn{
+
+            height: 10% !important;
+            font-size: small !important;
+        }
+        .btnlang{
+            width: 125px !important;
+
+        }
+        .btnAdd{
+            width: auto !important;
+        }
+        hr{
+            border: 1px solid grey;
+        }
+        .imageZone{
+            width: 50px !important;
+            height: 50px !important;
+        }
+
+        .header{
+            width: 100% !important;
+            height: 80px !important;
+            text-align: center !important;
+            background-color:#20c997;
+            padding-top: 20px !important;
+        }
+        .pageTitle{
+            font-weight: bold ;
+            color: #fff;
+        }
+        .viewAllRecord{
+            font-weight: bold ;
+            color:black;
+        }
+        body{
+            font-family: "Kh Content" ;
+            background-color: #d0d6e2;
+        }
+
+        /*footer*/
+        ul{
+            list-style: none;
+        }
+        .footer-copyright{
+            background-color: #161c27;
+            color: aliceblue;
+        }
+        li{
+            text-align: -webkit-match-parent;
+            box-sizing: border-box;
+        }
+
+
+        /* icon */
+
+        .btn-floating {
+            width: 47px;
+            height: 47px;
+            position: relative;
+            vertical-align: middle;
+            margin: 10px;
+            padding: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-floating i {
+            display: inline-block;
+            width: inherit;
+            text-align: center;
+            color: #fff;
+            font-size: 1.25rem;
+            line-height: 47px;
+        }
+
+        .btn-floating:hover {
+            background: #58647d;
+        }
+
+        .btn-fb {
+            background-color: #3b5998;
+        }
+
+        .btn-tw {
+            background-color: #55acee;
+        }
+
+        .btn-li {
+            background-color: #0082ca;
+        }
+
+        .btn-insta {
+            background: linear-gradient(
+                    45deg,
+                    #f09433 0%,
+                    #e6683c 25%,
+                    #dc2743 50%,
+                    #cc2366 75%,
+                    #bc1888 100%
+            );
+        }
+        /* icon */
+        /************************** End Updated Footer *************************/
+    </style>
+</head>
+<body>
+
+<div th:replace="fragments/header::header"></div>
+
+
+<div class="col-md-6 offset-md-3">
+    <br>
+    <center><h1>Update Record</h1></center>
+    <br>
+    <form th:action="@{/updateCatAction}" th:method="post" th:object="${categories}" enctype="multipart/form-data">
+        <fieldset>
+            <legend></legend>
+                <label for="id">ID</label>
+                <input type="text" class="form-control" readonly th:field="${categories.catId}">
+                <br>
+                <label for="title">Name</label>
+                <input type="text" class="form-control" th:field="${categories.catTitle}">
+                <br>
+                <input type="submit" class="btn btn-primary" value="Save">
+                <a href="/viewCat">
+                    <input type="button" class="btn btn-primary" value=" Cancel ">
+                </a>
+        </fieldset>
+    </form>
+
+</div>
+
+<div th:replace="fragments/footer3::footer"></div>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/js/mdb.min.js"></script>
+
+</body>
+</html>

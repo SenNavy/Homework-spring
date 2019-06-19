@@ -10,41 +10,140 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.min.css" rel="stylesheet">
+    <style>
+        .btn{
+            height: 10% !important;
+            font-size: small !important;
+        }
+        hr{
+            border: 1px solid grey;
+        }
+        #navbarSupportedContent-333{
+            width: 100% !important;
+            height: 100% !important;
+            text-align: center !important;
+        }
+        .big_title{
+            font-weight: bold ;
+            color: #fff;
+        }
+        body{
+            font-family: "Kh Content" ;
+            background-color: #d0d6e2;
+        }
+        .imageZone{
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /****************************************  Footer ********************************************/
+        ul{
+            list-style: none;
+        }
+        .footer-copyright{
+            background-color: #161c27;
+            color: aliceblue;
+        }
+        li{
+            text-align: -webkit-match-parent;
+            box-sizing: border-box;
+        }
+
+
+        /* icon */
+
+        .btn-floating {
+            width: 47px;
+            height: 47px;
+            position: relative;
+            vertical-align: middle;
+            margin: 10px;
+            padding: 0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-floating i {
+            display: inline-block;
+            width: inherit;
+            text-align: center;
+            color: #fff;
+            font-size: 1.25rem;
+            line-height: 47px;
+        }
+
+        .btn-floating:hover {
+            background: #58647d;
+        }
+
+        .btn-fb {
+            background-color: #3b5998;
+        }
+
+        .btn-tw {
+            background-color: #55acee;
+        }
+
+        .btn-li {
+            background-color: #0082ca;
+        }
+
+        .btn-insta{
+            background: linear-gradient(
+                    45deg,
+                    #f09433 0%,
+                    #e6683c 25%,
+                    #dc2743 50%,
+                    #cc2366 75%,
+                    #bc1888 100%
+            );
+        }
+    </style>
 </head>
 <body>
-
-    <br>
-    <center><h1>View Single Record</h1></center>
+<div th:replace="fragments/header::header"></div>
+<br>
+    <center><h1 th:text="#{viewsingle}">View Single Record</h1></center>
     <br>
     <div class="col-md-6 offset-md-3">
-        <form th:action="@{/updateAction}" th:method="post" th:object="${article}">
+        <form th:object="${article}">
             <fieldset>
-                <legend>Form Update</legend>
+                <legend></legend>
                 <div class="form-group">
-                    <label for="id">ID</label>
+                    <label th:text="#{id}">ID</label>
                     <input type="text" class="form-control " readonly  th:field="${article.id}">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" th:value="${article.name}">
-                    <label for="author">Author</label>
-                    <input type="text" class="form-control" name="author" th:value="${article.author}">
                     <br>
-                    <label for="author">Description</label>
-                    <input type="text" class="form-control" name="description" th:value="${article.description}">
-                    <br>
-                    <label for="image">Image</label>
-                    <input type="text" class="form-control" name="image" th:value="${article.image}">
-                    <br>
+
+                    <label th:text="#{title}">Name</label>
+                    <input type="text" class="form-control" name="name" th:value="${article.name}"><br>
+
+                    <label th:text="#{category}">category</label>
+                    <input type="text" class="form-control" name="catTitle" th:value="${article.categories.catTitle}"><br>
+
+
+                    <label th:text="#{author}">Author</label>
+                    <input type="text" class="form-control" name="author" th:value="${article.author}"><br>
+
+                    <label th:text="#{descriptions}">Description</label>
+                    <input type="text" class="form-control" name="description" th:value="${article.description}"><br>
+
+                    <label th:text="#{image}">Image</label>
+                    <div>
+                        <img class="imageZone" th:src="'resources/'+${article.image}">
+                    </div>
                     <a href="/viewAll">
-                        <input type="button" class="btn btn-primary" value="Back">
+                        <button type="button" class="btn btn-primary btn-md" th:text="#{back}">BACK</button>
                     </a>
+                    <a th:href="@{/update/{id}(id=${article.id})}"  ><button th:text="#{edite}" type="button" class="btn btn-warning btn-md ">Edit</button></a>
+
                 </div>
             </fieldset>
         </form>
 
     </div>
-
-
-
+    <div th:replace="fragments/footer::footer"></div>
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->

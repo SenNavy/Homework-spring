@@ -1,0 +1,35 @@
+<div class="header" th:fragment="header">
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <h3 class="big_title" th:text="#{articleTitle}">ARTICLE MANAGEMENT SYSTEM</h3>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link" href="/viewAll" th:text="#{home}">HOME</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"th:text="#{category}">Categories</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Horror</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Drama</a>
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <a href="/viewAll?l=kh"><button th:text="#{khmer}" class="btn btn-primary btnlang ">KHMER</button></a>
+                <a href="/viewAll?l=en"><button th:text="#{english}" class="btn btn-dark btnlang ">English</button></a>
+            </ul>
+        </div>
+    </nav>
+</div>
